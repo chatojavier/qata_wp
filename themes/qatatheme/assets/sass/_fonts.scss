@@ -1,0 +1,29 @@
+/* Avenir */
+
+@font-face {
+     font-family: "Avenir";
+     src: url("../fonts/Avenir-Roman.woff2") format("woff2"),
+         url("../fonts/Avenir-Roman.woff") format("woff"),
+         url("../fonts/Avenir-Roman.ttf") format("truetype");
+     font-weight: normal;
+     font-style: normal;
+}
+
+@font-face {
+     font-family: "Avenir";
+     src: url("../fonts/Avenir-Black.woff2") format("woff2"),
+         url("../fonts/Avenir-Black.woff") format("woff"),
+         url("../fonts/Avenir-Black.ttf") format("truetype");
+     font-weight: 900;
+     font-style: normal;
+}
+
+@font-face {
+     font-family: "Avenir";
+     src: url("../fonts/Avenir-Book.woff2") format("woff2"),
+         url("../fonts/Avenir-Book.woff") format("woff"),
+         url("../fonts/Avenir-Book.ttf") format("truetype");
+     font-weight: 300;
+     font-style: normal;
+}
+

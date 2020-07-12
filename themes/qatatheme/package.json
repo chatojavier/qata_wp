@@ -20,11 +20,13 @@
     "@wordpress/scripts": "^9.0.0",
     "dir-archiver": "^1.1.1",
     "gulp-autoprefixer": "^7.0.1",
+    "gulp-minify": "^3.1.0",
     "gulp-minify-css": "^1.2.4",
     "gulp-plumber": "^1.2.1",
     "gulp-sass": "^4.1.0",
     "node-sass": "^4.14.0",
-    "rtlcss": "^2.5.0"
+    "rtlcss": "^2.5.0",
+    "swiper": "^6.0.2"
   },
   "rtlcssConfig": {
     "options": {

@@ -7,7 +7,7 @@ var plumber = require('gulp-plumber');
 function onError(err) {
     console.log(err);
 }
-
+//Compile Sass
 gulp.task('sass', function(){
     return gulp.src('assets/sass/**/*.scss')
         .pipe(sass())
@@ -19,7 +19,17 @@ gulp.task('sass', function(){
         }))
 });
 
+//minify js
+const minifyJs = require('gulp-minify');
+ 
+gulp.task('minifyjs', function() {
+  gulp.src(['assets/js/**/*.js'])
+    .pipe(minifyJs())
+    .pipe(gulp.dest('./assets/js/'))
+});
+
 //Watch task
 gulp.task('default', function() {
     gulp.watch('assets/sass/**/*.scss', gulp.series('sass'));
+    gulp.watch('assets/js/**/*.js', gulp.series('minifyjs'));
 });

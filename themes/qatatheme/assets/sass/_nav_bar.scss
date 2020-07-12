@@ -1,0 +1,25 @@
+.header {
+    position: relative;
+    height: calc(3.75rem + 10vw);
+
+    .fixed-bar {
+        position: fixed;
+        width: 100%;
+        padding: 5vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: white;
+        z-index: 20;
+        @include transition-ease;
+
+        .logo {
+            height: 3.75rem;
+            @include transition-ease;
+        }
+    }
+}
+
+.header-sidebar {
+    display: none;
+}

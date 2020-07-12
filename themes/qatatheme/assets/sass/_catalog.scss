@@ -1,0 +1,91 @@
+.catalog-grid {
+    width: 100%;
+    max-width: 64rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    margin: auto;
+    padding-top: 2rem;
+
+    &__item {
+        position: relative;
+        margin-top: 2rem;
+        width: 100%;
+        max-width: 30rem;
+        margin-right: 5%;
+
+        &__:nth-child(1) {
+            margin-top: 4rem;
+        }
+        
+
+        &__img {
+            width: 90%;
+            background-size: cover;
+
+            img {
+                display: block;
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+
+            &::before {
+                content: "";
+                display: block;
+                position: absolute;
+                padding-bottom: 100%;
+            }
+            
+        }
+        &__label {
+            max-width: 90%;
+            background-color: white;
+            border: 1px solid $color-salmon-dark;
+            display: flex;
+            position: relative;
+            margin-top: -5rem;
+            align-self: flex-end;
+            margin-left: 10%;
+    
+            &__content {
+                line-height: 1.25;
+                position: relative;
+                padding: 2.25rem;
+    
+                &__prod {
+                    @include avenir20-black;
+                    color: $color-salmon-dark;
+                }
+    
+                &__material {
+                    @include avenir13-light;
+                    line-height: 1.5rem;
+                }
+    
+                &__arrow {
+                    stroke: currentColor;
+                    fill: none;
+                    color: $color-salmon-light;
+                    float: right;
+                }
+            }
+        }
+    }
+}
+
+.blog .catalog-grid{
+    &__item {
+        &__label {
+            &__content {
+                &__prod {
+                    font-size: 15px;
+                }
+                &__material {
+                    font-size: 11px;
+                }
+            }
+        }
+    }
+}

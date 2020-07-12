@@ -1,0 +1,43 @@
+/* ---- Base Style ---- */
+@import 'base';
+
+/* ---- Swiper Slider ---- */
+@import '../../node_modules/swiper/swiper.scss';
+
+/* ---- Fonts ---- */
+    @import 'fonts';
+
+/* ---- Mixins ---- */
+    @import 'mixins';
+
+/* ---- Animations Mixins ---- */
+    @import 'animations';
+
+/* ---- resets ---- */
+    @import 'resets';
+
+/* ---- Home ---- */
+    @import 'blocks';
+
+/* ---- Nav bar ---- */
+    @import 'nav_bar';
+
+/* ---- Menu Mobile ---- */
+    @import'menu';
+
+/* ---- Carousel ---- */
+    @import 'carousel';
+
+/* ---- First Screen (Header w/o nav) ---- */
+    @import 'first_screen';
+
+/* ---- Header Hero ---- */
+    @import 'hero';
+
+/* ---- Catalog Grid ---- */
+    @import 'catalog';
+
+
+
+/* ---- Responsive ---- */
+@import 'responsive';

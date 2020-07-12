@@ -1,0 +1,28 @@
+.first-screen {
+    height: calc(100% - 3.75rem - 10vw);
+    display: flex;
+    align-items: center;
+
+    &__down-arrow {
+        font-size: 32px;
+        color: $color-gold-dark;
+        position: absolute;
+        bottom: 0;
+        right: 5%;
+        margin-bottom: 1rem;
+        //Animation bounce
+        @include bounce;
+    }
+}
+
+.home .first-screen__down-arrow {
+    color: $color-gold-dark;
+}
+
+.about .first-screen__down-arrow, .responsibility .first-screen__down-arrow {
+    color: white;
+}
+
+.category .first-screen__down-arrow {
+    color: $color-gold-light;
+}
