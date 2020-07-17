@@ -10,7 +10,10 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
+
+
+
+	<!-- <main id="primary" class="site-main">
 
 		<?php if ( have_posts() ) : ?>
 
@@ -19,7 +22,7 @@ get_header();
 				the_archive_title( '<h1 class="page-title">', '</h1>' );
 				the_archive_description( '<div class="archive-description">', '</div>' );
 				?>
-			</header><!-- .page-header -->
+			</header>
 
 			<?php
 			/* Start the Loop */
@@ -44,8 +47,7 @@ get_header();
 		endif;
 		?>
 
-	</main><!-- #main -->
+	</main> #main -->
 
 <?php
-get_sidebar();
 get_footer();
