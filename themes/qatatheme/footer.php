@@ -32,15 +32,8 @@
 		</div>
 	</div>
 	<div class="insta-container">
-		<figure class="insta-container__item">
-			<img src="<?php echo get_template_directory_uri(); ?>/assets/img/insta_img_001.jpg" srcset="<?php echo get_template_directory_uri(); ?>/assets/img/insta_img_001@2x.jpg" alt="Qata Alpaca - Artisans working Alpaca's fur.">
-		</figure>
-		<figure class="insta-container__item">
-			<img src="<?php echo get_template_directory_uri(); ?>/assets/img/insta_img_002.jpg" srcset="<?php echo get_template_directory_uri(); ?>/assets/img/insta_img_002@2x.jpg" alt="Qata Alpaca - Artisans working Alpaca's fur.">
-		</figure>
-		<figure class="insta-container__item">
-			<img src="<?php echo get_template_directory_uri(); ?>/assets/img/insta_img_003.jpg" srcset="<?php echo get_template_directory_uri(); ?>/assets/img/insta_img_003@2x.jpg" alt="Qata Alpaca - Artisans working Alpaca's fur.">
-		</figure>
+		<script id="insta-widget" src="https://apps.elfsight.com/p/platform.js" defer></script>
+        <div class="elfsight-app-4a319c36-b32c-4165-b3cc-b67ef65bde61"></div>
 		<div class="social-icons">
 			<a href="https://www.facebook.com/qatalpaca" target="_blank"><i class="fab fa-facebook-f"></i></a>
 			<a href="https://www.instagram.com/qatalpaca/" target="_blank"><i class="fab fa-instagram"></i></a>

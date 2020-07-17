@@ -36,6 +36,7 @@
                         text-align: right;
                         float: right;
                         transform: none;
+                        height: initial;
             
                         &__item {
                             display: inline;
@@ -46,9 +47,14 @@
                             .active {
                                 color: $color-salmon-dark;
                             }
+                            a {
+                                font-size: 12px;
+                            }
                         }
-                        &__link {
-                            font-size: 12px;
+                        .social-icons {
+                            a {
+                                font-size: 15px;
+                            }
                         }
                     }
                 }
@@ -344,6 +350,23 @@
         }
     }
     
+
+    //block-item
+    .block-item {
+        .card-item {
+            &__colors {
+                display: inline-block;
+                width: 39%;
+                vertical-align:top;
+            }
+
+            &__sizes {
+                display: inline-block;
+                width: 59%;
+                vertical-align:top;
+            }
+        }
+    }
 
 
     @media screen and (min-width: 815px) { 
@@ -683,6 +706,7 @@
                 margin: 0 0 0 -14rem;
                 z-index: 0;
                 width: 80%;
+                min-height: 28rem;
 
                 &__content {
                     &__txt {

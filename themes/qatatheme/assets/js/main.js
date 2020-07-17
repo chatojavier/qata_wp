@@ -175,8 +175,12 @@ if (document.querySelectorAll('.item-slider__carousel').length > 0) {
         speed: 500,
         updateOnWindowResize: true,
         loop: true,
-        loopedSlides: 4
-
+        loopedSlides: 4,
+        // Disable preloading of all images
+        preloadImages: false,
+        // Enable lazy loading
+        lazy: true,
+        updateOnImagesReady: false,
     });
 
 
@@ -233,3 +237,25 @@ if (document.querySelectorAll('.item-slider__carousel').length > 0) {
 
 /* ---- End Swipper Slider Config ---- */
 
+/* ---- Config Insta Elfsight pligin ---- */
+        
+setTimeout(function() {
+    var elfLogo = document.querySelector('.eapps-instagram-feed.eapps-widget > a');
+    var overlay = document.querySelectorAll('.eapps-instagram-feed-posts-item-overlay')
+
+    elfLogo.parentNode.removeChild(elfLogo);
+    
+    for (var overElem of overlay)
+    overElem.style.background = 'rgba(217, 200, 158, 0.8)';
+
+}, 2500);
+
+/* ---- ITEM PAGE change to block ---- */
+if (document.querySelector('.card-item__sizes__table') !== null) {
+    var itemColorContainer = document.querySelector('.card-item__colors');
+    var itemSizeContainer = document.querySelector('.card-item__sizes');
+    itemColorContainer.style.display = 'block';
+    itemColorContainer.style.width = '100%';
+    itemSizeContainer.style.display = 'block';
+    itemSizeContainer.style.width = '100%';
+}

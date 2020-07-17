@@ -754,7 +754,10 @@
             margin-bottom: 1rem;
         }
         &__material {
-            @include avenir13-light
+            @include avenir13-light;
+            a:hover {
+                color: $color-gold-dark;
+            }
         }
         &__txt {
             @include raleway15
@@ -771,7 +774,52 @@
                 width: 1.5rem;
                 height: 1.5rem;
                 margin-right: .5rem;
-                border: black solid 1px;
+                border: $color-gold-dark solid 1px;
+            }
+        }
+    }
+    &__composition {
+        &__part {
+            @include avenir13-light;
+            font-weight: 500;
+            line-height: .75rem;
+
+            &:not(:first-child) {
+                margin-top: .5rem;
+            }
+        }
+    }
+    &__sizes {
+        &__list {
+            .card-item__content__txt {
+                display: inline-block;
+                border: $color-salmon-dark solid 1px;
+                padding: 0.3rem;
+                margin-right: 0.1rem;
+                margin-bottom: 0.3rem;
+            }
+        }
+        &__disclaimer {
+            color: $color-gold-dark;
+            font-size: 13px;
+            font-weight: 300;
+        }
+        &__table {
+            tr:not(:last-child) {
+                border-bottom: $color-salmon-light solid 1px;
+            }
+            tr:first-child td {
+                @include avenir13-light;
+                text-align: center;
+            }
+            tr td:not(:first-child) {
+                text-align: center;
+            }
+            tr td:not(:last-child) {
+                border-right: $color-salmon-light solid 1px;
+            }
+            tr td {
+                padding: 0.25rem;
             }
         }
     }

@@ -46,8 +46,20 @@
 
     <header class="header">
         <div class="fixed-bar">
-            <div class="container-logo">
-                <a href="<?php echo home_url(); ?>"><img class="logo" src="<?php echo get_template_directory_uri(); ?>/assets/img/qata_logo_salmon_dark.svg" alt="Qata Logo"></a>
+            <div class="fixed-bar__container">
+                <div class="container-logo">
+                    <a href="<?php echo home_url(); ?>"><img class="logo" src="<?php echo get_template_directory_uri(); ?>/assets/img/qata_logo_salmon_dark.svg" alt="Qata Logo"></a>
+                </div>
+                <nav class="nav">
+                <?php
+                    wp_nav_menu(
+                        array(
+                            'theme_location' => 'primary',
+                            'menu_class'     => 'menu-nav',
+                        )
+                    );
+                ?>
+                </nav>
             </div>
         </div>
         <div class="menu-btn">
