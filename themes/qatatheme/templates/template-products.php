@@ -7,68 +7,8 @@ if(have_posts()) : the_post();
   $home_id = $post->ID;
 ?>
 
-<div class="header-hero">
-            <div class="header-hero__img">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/products_img_001.jpg" alt="" hover-img="<?php echo get_template_directory_uri(); ?>/assets/img/products_img_001.jpg" style="object-position: center;">
-                <img src="" class="header-hero__img__change opacity-0">
-            </div>
-            <div class="header-card landscape">
-                <h1 class="header-card__ttl">
-                    Products
-                </h1>
-                <ul class="header-card__list">
-                    <li>
-                        <a href="category.html" hover-img="<?php echo get_template_directory_uri(); ?>/assets/img/products_img_002.jpg">Accessories</a>
-                    </li>
-                    <li>
-                        <a href="category.html" hover-img="<?php echo get_template_directory_uri(); ?>/assets/img/products_img_003.jpg">Alpaca Fur Toys</a>
-                    </li>
-                    <li>
-                        <a href="category.html" hover-img="<?php echo get_template_directory_uri(); ?>/assets/img/products_img_004.jpg">Babies</a>
-                    </li>
-                    <li>
-                        <a href="category.html" hover-img="<?php echo get_template_directory_uri(); ?>/assets/img/products_img_002.jpg">Home</a>
-                    </li>
-                    <li>
-                        <a href="category.html" hover-img="<?php echo get_template_directory_uri(); ?>/assets/img/products_img_003.jpg">Needle Felting</a>
-                    </li>
-                    <li>
-                        <a href="category.html" hover-img="<?php echo get_template_directory_uri(); ?>/assets/img/products_img_004.jpg">Sleepers</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-       
-        <div id="down-sign" class="first-screen__down-arrow">
-            <a href="#down-sign"><i class="fas fa-long-arrow-alt-down"></i></a>
-        </div>
-    </section>
-
-    <div class="header-card portrait">
-        <h1 class="header-card__ttl">
-            Products
-        </h1>
-        <ul class="header-card__list">
-            <li>
-                <a href="category.html" hover-img="<?php echo get_template_directory_uri(); ?>/assets/img/products_img_002.jpg">Accessories</a>
-            </li>
-            <li>
-                <a href="category.html" hover-img="<?php echo get_template_directory_uri(); ?>/assets/img/products_img_003.jpg">Alpaca Fur Toys</a>
-            </li>
-            <li>
-                <a href="category.html" hover-img="<?php echo get_template_directory_uri(); ?>/assets/img/products_img_004.jpg">Babies</a>
-            </li>
-            <li>
-                <a href="category.html" hover-img="<?php echo get_template_directory_uri(); ?>/assets/img/products_img_002.jpg">Home</a>
-            </li>
-            <li>
-                <a href="category.html" hover-img="<?php echo get_template_directory_uri(); ?>/assets/img/products_img_003.jpg">Needle Felting</a>
-            </li>
-            <li>
-                <a href="category.html" hover-img="<?php echo get_template_directory_uri(); ?>/assets/img/products_img_004.jpg">Sleepers</a>
-            </li>
-        </ul>
-    </div>
+<!-- Header Hero Products -->
+<?php get_template_part( 'template-parts/header-hero-product', get_post_type() ); ?>
 
     <section class="second-screen">
         <div class="block-artisans">

@@ -7,33 +7,8 @@ if(have_posts()) : the_post();
   $home_id = $post->ID;
 ?>
 
-<div class="header-hero">
-            <div class="header-hero__img">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/responsibility_img_001.jpg" alt="" srcset="<?php echo get_template_directory_uri(); ?>/assets/img/responsibility_img_001@2x.jpg">
-            </div>
-            <div class="header-card landscape">
-                <h1 class="header-card__ttl">
-                    Responsibility
-                </h1>
-                <div class="header-card__descrip">
-                   <p>The pillars of our company are artisans and alpacas. That is why all our work is oriented to their well-being.</p>
-                </div>
-            </div>
-        </div>
-       
-        <div id="down-sign" class="first-screen__down-arrow">
-            <a href="#down-sign"><i class="fas fa-long-arrow-alt-down"></i></a>
-        </div>
-    </section>
-
-    <div class="header-card portrait">
-        <h1 class="header-card__ttl">
-            Responsibility
-        </h1>
-        <div class="header-card__descrip">
-            <p>The pillars of our company are artisans and alpacas. That is why all our work is oriented to their well-being.</p>
-        </div>
-    </div>
+    <!-- Header Hero -->
+    <?php get_template_part( 'template-parts/header-hero', get_post_type() ); ?>
 
     <section class="second-screen">
         <div class="block-artisans">

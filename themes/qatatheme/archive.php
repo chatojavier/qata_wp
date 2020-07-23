@@ -9,45 +9,86 @@
 
 get_header();
 ?>
+	<?php $term = get_queried_object(); ?>
+	<?php if ( have_posts() ) : ?>
+	<!-- Header Title and Image -->
+	    <div class="header-hero">
+            <div class="header-hero__img">
+                <img src="<?php the_field('cat_image1x', $term) ?>" alt="" srcset="<?php the_field('cat_image2x', $term) ?>">
+            </div>
+            <div class="header-card landscape">
+                <h1 class="header-card__ttl">
+					<?php the_archive_title() ?>
+                </h1>
+                <div class="header-card__descrip">
+                    <p><?php the_archive_description() ?></p>
+                </div>
+            </div>
+        </div>
+       
+        <div id="down-sign" class="first-screen__down-arrow">
+            <a href="#down-sign"><i class="fas fa-long-arrow-alt-down"></i></a>
+        </div>
+    </section>
 
+    <div class="header-card portrait">
+        <h1 class="header-card__ttl">
+			<?php the_archive_title() ?>
+        </h1>
+        <div class="header-card__descrip">
+            <p><?php the_archive_description() ?></p>
+        </div>
+	</div>
+	
+	<!-- Second Screen -->
+	<section class="second-screen">
+        <div class="block-catalog">
+            <div class="block-catalog__bg"></div>
 
-
-
-	<!-- <main id="primary" class="site-main">
-
-		<?php if ( have_posts() ) : ?>
-
-			<header class="page-header">
+            <div class="catalog-grid">
 				<?php
-				the_archive_title( '<h1 class="page-title">', '</h1>' );
-				the_archive_description( '<div class="archive-description">', '</div>' );
+					/* Start the Loop */
+					while ( have_posts() ) :
+						the_post();
+
+						/* Posts resume sqares */
+						get_template_part( 'template-parts/content-archive', get_post_type() );
+
+					endwhile;
 				?>
-			</header>
+            </div>
+        </div>
 
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
+        <!-- Category Menu Block -->
+        <?php get_template_part( 'template-parts/content-block-category', get_post_type() ); ?>
+	</section>
+	
+	<?php else :
 
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
+		get_template_part( 'template-parts/content', 'none' );
 
-			endwhile;
+	endif;
+	?>
 
-			the_posts_navigation();
 
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
-
-	</main> #main -->
-
+	<script>
+        document.body.classList.add('about');
+	</script>
+	<script>
+	  if ('loading' in HTMLImageElement.prototype) {
+	  // Si el navegador soporta lazy-load, tomamos todas las imágenes que tienen la clase
+	  // `lazyload`, obtenemos el valor de su atributo `data-src` y lo inyectamos en el `src`.
+	  var images = document.querySelectorAll("img.lazyload");
+	    images.forEach(img => {
+	        img.src = img.dataset.src;
+	    });
+	  } else {
+	    // Importamos dinámicamente la libreria `lazysizes`
+	    var script = document.createElement("script");
+	    script.async = true;
+	    script.src = "https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.0/lazysizes.min.js";
+	    document.body.appendChild(script);
+	  }
+	</script>
 <?php
 get_footer();

@@ -9,6 +9,7 @@
 
 ?>
 
+
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 		<?php
@@ -25,9 +26,9 @@
 				qatatheme_posted_on();
 				qatatheme_posted_by();
 				?>
-			</div><!-- .entry-meta -->
+			</div>
 		<?php endif; ?>
-	</header><!-- .entry-header -->
+	</header>
 
 	<?php qatatheme_post_thumbnail(); ?>
 
@@ -55,9 +56,9 @@
 			)
 		);
 		?>
-	</div><!-- .entry-content -->
+	</div> 
 
 	<footer class="entry-footer">
 		<?php qatatheme_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
-</article><!-- #post-<?php the_ID(); ?> -->
+	</footer>
+</article>

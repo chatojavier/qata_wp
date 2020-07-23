@@ -79,7 +79,7 @@ function hoverImg(linkList, imgContainer) {
     }
 };
 
-if (document.body.classList.contains('item') || document.body.classList.contains('category')) {
+if (document.querySelectorAll('.block-categories').length > 0) {
     var categoryLinkList = document.querySelectorAll(".block-categories__card__list a");
     var categoryImgContainer = document.querySelector(".block-categories__img__change");
     hoverImg(categoryLinkList, categoryImgContainer);

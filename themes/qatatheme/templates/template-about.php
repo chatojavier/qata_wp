@@ -7,46 +7,8 @@ if(have_posts()) : the_post();
   $home_id = $post->ID;
 ?>
 
-<div class="header-hero">
-            <div class="header-hero__img">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/about_img_001.jpg" alt="" srcset="<?php echo get_template_directory_uri(); ?>/assets/img/about_img_001@2x.jpg">
-            </div>
-
-            <div class="header-card landscape">
-                <h1 class="header-card__ttl">
-                    About Us
-                </h1>
-                <div class="header-card__descrip">
-                    <p>
-                        We are Ale and Ysa, the faces behind Qata Alpaca Goods. Born and raised in Arequipa - Peru. The love for our culture, the alpacas and the exquisite art made by local people come together to create a brand that focuses on artisans. 
-                    </p>
-                    <p>
-                        Working hand in hand with these artists, we create high quality leather products to international standards. Our objectives are to value the work of the artisans, assure them a fair payment and use natural death alpaca fur.
-                    </p>
-                </div>
-                
-            </div>
-            
-        </div>
-       
-        <div id="down-sign" class="first-screen__down-arrow">
-            <a href="#down-sign"><i class="fas fa-long-arrow-alt-down"></i></a>
-        </div>
-    </section>
-
-    <div class="header-card portrait">
-        <h1 class="header-card__ttl">
-            About Us
-        </h1>
-        <div class="header-card__descrip">
-            <p>
-                We are Ale and Ysa, the faces behind Qata Alpaca Goods. Born and raised in Arequipa - Peru. The love for our culture, the alpacas and the exquisite art made by local people come together to create a brand that focuses on artisans. 
-            </p>
-            <p>
-                Working hand in hand with these artists, we create high quality leather products to international standards. Our objectives are to value the work of the artisans, assure them a fair payment and use natural death alpaca fur.
-            </p>
-        </div>
-    </div>
+    <!-- Header Hero -->
+    <?php get_template_part( 'template-parts/header-hero', get_post_type() ); ?>
 
     <section class="second-screen">
         <div class="block-products">
