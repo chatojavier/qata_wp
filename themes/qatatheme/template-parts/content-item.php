@@ -12,48 +12,56 @@
 <div class="block-item">
     <!-- Item Slider -->
     <div class="item-slider">
-        <?php if( have_rows('item_slider') ): ?>
+    <?php if( have_rows('item_slider') ): ?>
         <!-- Main Slider -->
         <div class="item-slider__carousel">
             <div class="swiper-wrapper">
             <?php while( have_rows('item_slider') ): the_row();
-            $image1x = get_sub_field('img_1x');
-            $image2x = get_sub_field('img_2x');
+            $image1x = wp_get_attachment_image_src(get_sub_field('img_item'), 'medium')[0];
+            $image2x = wp_get_attachment_image_src(get_sub_field('img_item'), 'large')[0];
             $posX = get_sub_field('position_x');
             $posY = get_sub_field('position_y');
             ?>
                 <!-- Slide -->
                 <div class="swiper-slide item-slider__carousel__item bg-cover" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/dual-ring-1s-61px.gif'); background-position: center; background-repeat: no-repeat;">
-                    <img data-src="<?php echo $image1x; ?>" data-srcset="<?php echo $image2x; ?>" style="object-position: <?php echo $posX; ?>% <?php echo $posY; ?>%;" class="swiper-lazy">
-                    
+                    <img data-src="<?php echo $image1x; ?>" data-srcset="<?php echo $image2x; ?> 2x" style="object-position: <?php echo $posX; ?>% <?php echo $posY; ?>%;" class="swiper-lazy">
                 </div>
             <?php endwhile; ?>
             </div>
         </div>
         <!-- Thumbnail Slider -->
+        <?php if(count(get_field('item_slider')) > 1) : ?>
         <div class="thumb-slider__carousel">
             <div class="swiper-wrapper">
             <?php while( have_rows('item_slider') ): the_row();
-            $imgageThumb = get_sub_field('img_thumb');
+            $img_thumb1x = wp_get_attachment_image_src(get_sub_field('img_item'), 'thumbnail-small')[0];
+            $img_thumb2x = wp_get_attachment_image_src(get_sub_field('img_item'), 'thumbnail')[0];
             $posX = get_sub_field('position_x');
             $posY = get_sub_field('position_y');
             ?>
                 <!-- Slide -->
-                <div class="swiper-slide thumb-slider__carousel__item bg-cover"><?php echo wp_get_attachment_image( $imgageThumb, 'thumbnail' ); ?></div>
+                <div class="swiper-slide thumb-slider__carousel__item bg-cover">
+                    <img src="<?php echo $img_thumb1x; ?>" srcset="<?php echo $img_thumb2x; ?> 2x" style="object-position: <?php echo $posX; ?>% <?php echo $posY; ?>%;">
+                </div>
             <?php endwhile; ?>
             </div>
-        <?php endif; ?>
         </div>
         <!-- Add Arrows -->
         <div class="thumb-slider__navigation">
             <div class="thumb-slider-prev"><i class="fas fa-chevron-left"></i></div>
             <div class="thumb-slider-next"><i class="fas fa-chevron-right"></i></div>
         </div>
+        <?php endif; ?>
+    <!-- None Image -->
+    <?php else: ?>
+        <div class="item-slider__carousel">
+            <div class="swiper-slide item-slider__carousel__item bg-cover" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/no_image_placeholder.png'); background-position: center; background-repeat: no-repeat; background-size: 50%; border: lightgray solid 1px;"></div>
+        </div>
+
+    <?php endif; ?>
     </div>
     
         
-    
-    
     <!-- Item Card -->
     <div class="card-item">
         <div class="card-item__bg"></div>
@@ -73,12 +81,16 @@
                             <p>
                             <span class="card-item__composition__part "><?php the_sub_field('comp_part') ?>:</span>
                             
-                            <?php if( have_rows('composition') ): ?>
-                                <?php while( have_rows('composition') ): the_row(); ?>
-
+                            <?php $materialLenght = count(get_sub_field('composition')) ;
+                            if( have_rows('composition') ): 
+                                $i = 1;
+                                while( have_rows('composition') ):
+                                    the_row(); ?>
+                                    
                                     <span class="card-item__content__material" id="material">
                                         <?php $taxonomyTerm = get_sub_field('material'); ?>
-                                        <?php the_sub_field('percentage')?> % <a href="<?php echo home_url(); ?>/materials/<?php echo esc_html($taxonomyTerm->slug); ?>"><?php echo esc_html($taxonomyTerm->name); ?></a> /
+                                        <?php the_sub_field('percentage')?>% <a href="<?php echo home_url(); ?>/materials/<?php echo esc_html($taxonomyTerm->slug); ?>"><?php echo esc_html($taxonomyTerm->name); ?></a>
+                                        <?php if($i != $materialLenght) {echo ' / '; $i++;} ?>  
                                     </span>
                         
                                 <?php endwhile; ?>

@@ -5,6 +5,26 @@ Description: Site specific code changes for Qata
 */
 /* Start Adding Functions Below this Line */
   
+
+
+/**========================
+	Create new images sizes.
+===========================*/
+	function pw_add_image_sizes() {
+		add_image_size( 'thumbnail-small', '100', '0', false );
+		add_image_size( 'medium-small', '400', '0', false );
+	}
+	add_action( 'init', 'pw_add_image_sizes' );
+
+	function pw_show_image_sizes($sizes) {
+	    $sizes['thumbnail-small'] = __( 'Thumbnail Small');
+	    $sizes['medium-small'] = __( 'Medium Small');
+	 
+	    return $sizes;
+	}
+	add_filter('image_size_names_choose', 'pw_show_image_sizes');
+
+
 /**========================
 	Create Post Types.
 ===========================*/
@@ -157,7 +177,193 @@ Description: Site specific code changes for Qata
             }
         return $title;    
     });
-  
+
+
+
+/**========================
+	Products Slider Function.
+===========================*/
+	
+	function get_product_slider( $terms_names, $numberSlides ) {
+		//defining what kind of page is it
+		$postType = get_post_type();
+		$postId = get_the_ID();
+		// defining args of posts to display
+		// posts of post category
+		if ($postType == 'qata_product') {
+			$args = array(
+				'post_type' => $postType,
+				'orderby'   => 'rand',
+				'posts_per_page' => $numberSlides, 
+				'tax_query' => array(
+					array(
+						'taxonomy' => 'products_category',
+						'field'    => 'slug',
+						'terms'    => $terms_names,
+					),
+				),
+			);
+		}
+		// All posts
+		else {
+			$args = array(
+				'post_type' => 'qata_product',
+				'orderby'   => 'rand',
+				'posts_per_page' => $numberSlides, 
+			);
+		}
+		// Assingn args to WP_Query
+		$the_query = new WP_Query( $args );
+		
+		// Creating an array to store all the items ids 
+		$IDitems = array();
+
+		// Starting the loop
+		if ( $the_query->have_posts() ) : ?>
+		<!-- Image Slider -->
+		<div class="product-slider__carousel">
+			<div class="swiper-wrapper">
+			<?php while ( $the_query->have_posts() ) :
+				$the_query->the_post();
+				if(get_the_ID() === $postId) {
+					continue;
+				}
+				$IDitems[] = get_the_ID();?>
+				<!-- loader gif -->
+				<div class="product-slider__carousel__item swiper-slide" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/dual-ring-1s-61px.gif'); background-position: center; background-repeat: no-repeat; background-size: 5%;">
+				
+					<!-- Link to Item -->
+					<a href="<?php echo get_permalink();?>">
+					<?php //loop to get cover image and positions
+					if( have_rows('item_slider') ) :
+						while( have_rows('item_slider') ): the_row();
+							if (get_sub_field('cover')) :
+								$image1x = wp_get_attachment_image_src(get_sub_field('img_item'), 'large')[0];
+								$image2x = wp_get_attachment_image_src(get_sub_field('img_item'), 'full')[0];
+								$posX = get_sub_field('position_x');
+								$posY = get_sub_field('position_y');
+								$cover_checker = "check";
+								//show a non image pic if cover is activated but empty
+								if (empty($image1x)) :?>
+									<div style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/no_image_placeholder.png'); background-position: center; background-repeat: no-repeat; background-size: 50%; border: lightgray solid 1px; height:100%"></div>
+								<?php else : //asign image cover to slide ?>
+									<img data-src="<?php echo $image1x; ?>" data-srcset="<?php echo $image2x; ?>" alt="" style="object-position: <?php echo $posX; ?>% <?php echo $posY; ?>%" class="swiper-lazy">
+								<?php endif; ?>
+							<?php break;
+							endif;
+							unset($cover_checker);
+						endwhile;
+					endif;
+					if (!isset($cover_checker)) : ?>
+						<div style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/no_image_placeholder.png'); background-position: center; background-repeat: no-repeat; background-size: 50%; border: lightgray solid 1px; height:100%"></div>
+					<?php endif; ?>
+					</a>
+				</div>
+			<?php endwhile; ?>
+			</div>
+		</div>
+		
+		<!-- Label Slider -->
+		<div class="product-slider__label">
+			<div class="swiper-wrapper">
+			<?php foreach($IDitems as $item) : ?>
+				<div class="product-slider__label__content swiper-slide">
+					<p class="product-slider__label__content__prod"><?php echo get_the_title( $item ); ?></p>
+					
+					<!-- Item Composition -->
+					<h2 class="product-slider__label__content__material">
+					<?php if( have_rows('compositions', $item) ): ?>
+						<?php while( have_rows('compositions', $item) ): the_row(); ?>
+							<!-- Composition with differents parts -->
+							<?php if(get_sub_field('comp_part')): ?>
+								<div>
+								<span><?php the_sub_field('comp_part') ?>:</span>
+								
+								<?php $materialLenght = count(get_sub_field('composition')) ;
+								if( have_rows('composition') ): 
+									$i = 1;
+									while( have_rows('composition') ):
+										the_row(); ?>
+
+										<span>
+											<?php $taxonomyTerm = get_sub_field('material'); ?>
+											<?php the_sub_field('percentage')?>% <?php echo esc_html($taxonomyTerm->name); ?>
+											<?php if($i != $materialLenght) {echo ' / '; $i++;} ?> 
+										</span>
+									
+									<?php endwhile; ?>
+								<?php endif; ?>
+								</div>
+							<!-- Single Part Composition -->
+							<?php else: ?>
+								<?php if( have_rows('composition', $item) ): ?>
+									<?php while( have_rows('composition', $item) ): the_row(); ?>
+										<span>
+											<?php $taxonomyTerm = get_sub_field('material'); ?>
+											<?php the_sub_field('percentage')?>% <?php echo esc_html($taxonomyTerm->name); ?>
+										</span>     
+									<?php endwhile; ?>
+								<?php endif; ?>
+							<?php endif; ?>
+						<?php endwhile; ?>
+					<?php endif; ?>
+					</h2>
+
+					<svg class="product-slider__label__content__arrow" xmlns="http://www.w3.org/2000/svg" width="25.207" height="20.414" viewBox="0 0 25.207 20.414"><defs></defs><path class="a" d="M15,0V6H0v6H15v6l9-9.09Z" transform="translate(0.5 1.199)"/></svg>
+				</div>
+			<?php endforeach; ?>
+			</div>
+		</div>
+		<?php wp_reset_postdata();
+		else : ?>
+		<span>No products found</span>
+		<?php endif;
+	}
+
+
+	/**========================
+	Set ACF cover item Image as Featured Post Image.
+===========================*/
+ 
+	function acf_set_featured_image( $value, $post_id, $field  ){
+		
+		if( have_rows('item_slider', $post_id) ) {
+			while( have_rows('item_slider', $post_id) ) {
+				the_row();
+				if (get_sub_field('cover')) {
+					$feat_img = get_sub_field('img_item');
+				}
+			}
+		}
+
+		if($feat_img != ''){
+			//Add the value which is the image ID to the _thumbnail_id meta data for the current post
+			add_post_meta($post_id, '_thumbnail_id', $feat_img);
+		}
+	
+		return $value;
+	}
+
+	// acf/update_value/name={$field_name} - filter for a specific field based on it's name
+	add_filter('acf/update_value/name=item_slider', 'acf_set_featured_image', 10, 3);
+ 
+	
+/**========================
+	order archive posts by title ascending
+===========================*/
+	
+    function my_change_sort_order($query){
+        if(is_archive()):
+         //If you wanted it for the archive of a custom post type use: is_post_type_archive( $post_type )
+           //Set the order ASC or DESC
+           $query->set( 'order', 'ASC' );
+           //Set the orderby
+           $query->set( 'orderby', 'title' );
+        endif;    
+	};
+	
+	add_action( 'pre_get_posts', 'my_change_sort_order'); 
+
 /* Stop Adding Functions Below this Line */
 
 

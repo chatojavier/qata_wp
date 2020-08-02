@@ -12,8 +12,13 @@
 <div class="block-categories">
     <div class="block-categories__bg"></div>
     <div class="block-categories__img">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/products_img_001.jpg" alt="" hover-img="<?php echo get_template_directory_uri(); ?>/assets/img/products_img_001.jpg" style="object-position: center;">
-        <img src="" class="block-categories__img__change opacity-0">
+    <?php
+        $post_term = get_the_terms( $post->ID, 'products_category' )[0];
+        $image1x = wp_get_attachment_image_src(get_field('cat_image', $post_term), 'large')[0];
+        $image2x = wp_get_attachment_image_src(get_field('cat_image', $post_term), 'full')[0];
+    ?>
+        <img src="<?php echo $image1x ?>" alt="" srcset="<?php echo $image2x ?> 2x" style="object-position: center;">
+        <img src="" srcset="" class="block-categories__img__change opacity-0">
     </div>
 
     <div class="block-categories__card">
@@ -25,15 +30,17 @@
         <?php foreach ( $terms as $term ) {
             // The $term is an object, so we don't need to specify the $taxonomy.
             $term_link = get_term_link( $term );
+            $cat_image1x = wp_get_attachment_image_src(get_field('cat_image', $term), 'large')[0];
+            $cat_image2x = wp_get_attachment_image_src(get_field('cat_image', $term), 'full')[0];
             
             // If there was an error, continue to the next term.
-            if ( is_wp_error( $term_link ) || $term == get_queried_object() ) {
+            if ( is_wp_error( $term_link ) || $term == $post_term ) {
                 continue;
             } 
         
             // We successfully got a link. Print it out.?>
             <li>
-                <a href="<?php echo esc_url( $term_link ); ?>" hover-img="<?php the_field('cat_image1x', $term) ?>"> <?php echo $term->name ?> </a>
+                <a href="<?php echo esc_url( $term_link ); ?>" data-src="<?php echo $cat_image1x; ?>" data-srcset="<?php echo $cat_image2x ?>"> <?php echo $term->name ?> </a>
             </li>
         <?php } ?>
         </ul>

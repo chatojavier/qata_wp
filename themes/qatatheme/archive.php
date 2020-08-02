@@ -9,12 +9,16 @@
 
 get_header();
 ?>
-	<?php $term = get_queried_object(); ?>
+	<?php
+	$term = get_queried_object();
+	$cat_image1x = wp_get_attachment_image_src(get_field('cat_image', $term), 'large')[0];
+    $cat_image2x = wp_get_attachment_image_src(get_field('cat_image', $term), 'full')[0];
+	?>
 	<?php if ( have_posts() ) : ?>
 	<!-- Header Title and Image -->
 	    <div class="header-hero">
             <div class="header-hero__img">
-                <img src="<?php the_field('cat_image1x', $term) ?>" alt="" srcset="<?php the_field('cat_image2x', $term) ?>">
+                <img src="<?php echo $cat_image1x; ?>" alt="" srcset="<?php echo $cat_image2x; ?>">
             </div>
             <div class="header-card landscape">
                 <h1 class="header-card__ttl">

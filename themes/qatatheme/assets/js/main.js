@@ -64,11 +64,44 @@ function scrollFunction() {
 
 /* ---- Category Hover Image change ---- */
 
+//Load images in cache
+function preloadImages(linkList) {
+    if (!preloadImages.cache) {
+        preloadImages.cache = [];
+    }
+    var img;
+    for (var i = 0; i < linkList.length; i++) {
+        var linkSrc = linkList[i].getAttribute("data-src");
+        var linkSrcset = linkList[i].getAttribute("data-srcset");
+        img = new Image();
+        img.src = linkSrc;
+        img.srcset = linkSrcset;
+        preloadImages.cache.push(img);
+    }
+}
+//Delaying preloading until after the page loads
+function addLoadEvent(func) {
+	var oldonload = window.onload;
+	if (typeof window.onload != 'function') {
+		window.onload = func;
+	} else {
+		window.onload = function() {
+			if (oldonload) {
+				oldonload();
+			}
+			func();
+		}
+	}
+}
+
+//Load image hover
 function hoverImg(linkList, imgContainer) {
     for(var i = 0; i < linkList.length; i++) {
         linkList[i].addEventListener("mouseover", function() {
-            var linkSrc = this.getAttribute("hover-img");
+            var linkSrc = this.getAttribute("data-src");
+            var linkSrcset = this.getAttribute("data-srcset");
             imgContainer.src=linkSrc;
+            imgContainer.srcset=linkSrcset;
             imgContainer.classList.add("opacity-100");
             imgContainer.classList.remove("opacity-0");
         });
@@ -82,11 +115,17 @@ function hoverImg(linkList, imgContainer) {
 if (document.querySelectorAll('.block-categories').length > 0) {
     var categoryLinkList = document.querySelectorAll(".block-categories__card__list a");
     var categoryImgContainer = document.querySelector(".block-categories__img__change");
+    //Callback Load images in cache
+    addLoadEvent(preloadImages(categoryLinkList));
+    //Callback Load Image Hover
     hoverImg(categoryLinkList, categoryImgContainer);
 };
 if (document.body.classList.contains('products')) {
     var headerLinkList = document.querySelectorAll(".header-card__list a");
-    var headerImgContainer = document.querySelector('.header-hero__img__change');
+    var headerImgContainer = document.querySelector(".header-hero__img__change");
+    //Callback Load images in cache
+    addLoadEvent(preloadImages(headerLinkList));
+    //Callback Load Image Hover
     hoverImg(headerLinkList, headerImgContainer);
 }
 
@@ -107,6 +146,9 @@ if (document.querySelectorAll('.header-slider__carousel').length > 0) {
         loopedSlides: 4,
         speed: 500,
         updateOnWindowResize: true,
+        autoplay: {
+            delay: 2500,
+          },
 
     });
 
@@ -133,17 +175,36 @@ if (document.querySelectorAll('.header-slider__carousel').length > 0) {
 if (document.querySelectorAll('.product-slider__carousel').length > 0) {
 
     // Product Pics Slider Config
-    var productSwiper = new Swiper ('.product-slider__carousel', {
-        // Optional parameters
-        slidesPerView: 'auto',
-        spaceBetween: false,
-        centeredSlides: true,
-        loop: true,
-        loopedSlides: 4,
-        speed: 500,
-        updateOnWindowResize: true,
-
-    });
+    var nrSlides = document.querySelectorAll ('.product-slider__carousel__item');
+    if(nrSlides.length > 1) {
+        var options = {
+            // Optional parameters
+            slidesPerView: 'auto',
+            spaceBetween: false,
+            centeredSlides: true,
+            loop: true,
+            loopedSlides: 4,
+            speed: 500,
+            updateOnWindowResize: true,
+            // Disable preloading of all images
+            preloadImages: false,
+            // Enable lazy loading
+            lazy: {
+                loadPrevNext: true,
+                loadOnTransitionStart: true,
+            },
+            // Disable load again images loaded
+            updateOnImagesReady: false,
+        }
+    } else {
+        var options = {
+            slidesPerView: 'auto',
+            loop: false,
+            lazy: true,
+            centeredSlides: true,
+        }
+    }
+    var productSwiper = new Swiper ('.product-slider__carousel', options);
 
     // Product Label Slider Config
     var productLabelSwiper = new Swiper ('.product-slider__label', {
@@ -180,6 +241,7 @@ if (document.querySelectorAll('.item-slider__carousel').length > 0) {
         preloadImages: false,
         // Enable lazy loading
         lazy: true,
+        // Disable load again images loaded
         updateOnImagesReady: false,
     });
 

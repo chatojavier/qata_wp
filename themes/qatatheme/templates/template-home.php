@@ -1,13 +1,14 @@
 <?php
 /* Template Name: Template - Home*/
 get_header();
+get_template_part( 'template-parts/content-header_slider', get_post_type() );
 
 if(have_posts()) : the_post();
   global $post;
   $home_id = $post->ID;
 ?>
 
-<div class="header-slider">
+        <!-- <div class="header-slider">
             <div class="header-slider__carousel">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide header-slider__carousel__item bg-cover"><a href="category.html"><img src="img/W-77.jpg" srcset="img/W-77@2x.jpg" style="object-position: 0 0;"></img></div></a>
@@ -61,7 +62,7 @@ if(have_posts()) : the_post();
         <div id="down-sign" class="first-screen__down-arrow">
             <a href="#down-sign"><i class="fas fa-long-arrow-alt-down"></i></a>
         </div>
-    </section>
+    </section> -->
 
     <section class="second-screen">
         <div id="block-about" class="block-about">
@@ -97,45 +98,7 @@ if(have_posts()) : the_post();
             </div>
             <div class="block-products__slider">
                 <div class="product-slider">
-                    <div class="product-slider__carousel">
-                        <div class="swiper-wrapper">
-                            <div class="product-slider__carousel__item swiper-slide"> <a href="item.html"><img src="img/W-77.jpg" srcset="img/W-77@2x.jpg" alt="" style="object-position: 0 0;"></a></div>
-                            <div class="product-slider__carousel__item swiper-slide"> <a href="item.html"><img src="img/W-89.jpg" srcset="img/W-89@2x.jpg" alt="" style="object-position: 50% 75%;"></a></div>
-                            <div class="product-slider__carousel__item swiper-slide"> <a href="item.html"><img src="img/W-77.jpg" srcset="img/W-77@2x.jpg" alt="" style="object-position: 0 0;"></a></div>
-                            <div class="product-slider__carousel__item swiper-slide"> <a href="item.html"><img src="img/W-89.jpg" srcset="img/W-89@2x.jpg" alt="" style="object-position: 50% 50%;"></a></div>
-                            <div class="product-slider__carousel__item swiper-slide"> <a href="item.html"><img src="img/W-77.jpg" srcset="img/W-77@2x.jpg" alt="" style="object-position: 0 0;"></a></div>
-                            <div class="product-slider__carousel__item swiper-slide"> <a href="item.html"><img src="img/W-89.jpg" srcset="img/W-89@2x.jpg" alt="" style="object-position: 50% 50%;"></a></div>
-                        </div>
-                    </div>
-                    <div class="product-slider__label">
-                        <div class="swiper-wrapper">
-                            <div class="product-slider__label__content swiper-slide"><a href="item.html">
-                                <p class="product-slider__label__content__prod">FUR HAT</p>
-                                <h2 class="product-slider__label__content__material">Border: 100% alpaca huacaya fur</h2>
-                                <svg class="product-slider__label__content__arrow" xmlns="http://www.w3.org/2000/svg" width="25.207" height="20.414" viewBox="0 0 25.207 20.414"><defs></defs><path class="a" d="M15,0V6H0v6H15v6l9-9.09Z" transform="translate(0.5 1.199)"/></svg>
-                            </a></div>
-                            <div class="product-slider__label__content swiper-slide"><a href="item.html">
-                                <p class="product-slider__label__content__prod">FUR HAT</p>
-                                <h2 class="product-slider__label__content__material">Border: 100% alpaca huacaya fur</h2>
-                                <svg class="product-slider__label__content__arrow" xmlns="http://www.w3.org/2000/svg" width="25.207" height="20.414" viewBox="0 0 25.207 20.414"><defs></defs><path class="a" d="M15,0V6H0v6H15v6l9-9.09Z" transform="translate(0.5 1.199)"/></svg>
-                            </a></div>
-                            <div class="product-slider__label__content swiper-slide"><a href="item.html">
-                                <p class="product-slider__label__content__prod">FUR HAT</p>
-                                <h2 class="product-slider__label__content__material">Border: 100% alpaca huacaya fur</h2>
-                                <svg class="product-slider__label__content__arrow" xmlns="http://www.w3.org/2000/svg" width="25.207" height="20.414" viewBox="0 0 25.207 20.414"><defs></defs><path class="a" d="M15,0V6H0v6H15v6l9-9.09Z" transform="translate(0.5 1.199)"/></svg>
-                            </a></div>
-                            <div class="product-slider__label__content swiper-slide"><a href="item.html">
-                                <p class="product-slider__label__content__prod">FUR HAT</p>
-                                <h2 class="product-slider__label__content__material">Border: 100% alpaca huacaya fur</h2>
-                                <svg class="product-slider__label__content__arrow" xmlns="http://www.w3.org/2000/svg" width="25.207" height="20.414" viewBox="0 0 25.207 20.414"><defs></defs><path class="a" d="M15,0V6H0v6H15v6l9-9.09Z" transform="translate(0.5 1.199)"/></svg>
-                            </a></div>
-                            <div class="product-slider__label__content swiper-slide"><a href="item.html">
-                                <p class="product-slider__label__content__prod">FUR HAT</p>
-                                <h2 class="product-slider__label__content__material">Border: 100% alpaca huacaya fur</h2>
-                                <svg class="product-slider__label__content__arrow" xmlns="http://www.w3.org/2000/svg" width="25.207" height="20.414" viewBox="0 0 25.207 20.414"><defs></defs><path class="a" d="M15,0V6H0v6H15v6l9-9.09Z" transform="translate(0.5 1.199)"/></svg>
-                            </a></div>
-                        </div>
-                    </div>
+                    <?php get_product_slider( '', 6 ); ?>
                 </div>
             </div>
         </div>

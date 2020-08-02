@@ -17,16 +17,18 @@
         <a href="<?php echo esc_url( get_permalink()); ?>"><!-- get link item-->
             <?php if( have_rows('item_slider', $thisPostID) ): ?>
                 <?php while( have_rows('item_slider', $thisPostID) ): the_row();
-                    $image1x = get_sub_field('img_1x');
-                    $image2x = get_sub_field('img_2x');
-                    $posX = get_sub_field('position_x');
-                    $posY = get_sub_field('position_y');
+                    $image1x = wp_get_attachment_image_src(get_sub_field('img_item'), 'large')[0];
+					$image2x = wp_get_attachment_image_src(get_sub_field('img_item'), 'full')[0];
+					$posX = get_sub_field('position_x');
+					$posY = get_sub_field('position_y');
                 ?> 
                     <?php if (get_sub_field('cover')) : ?>
                         <img data-src="<?php echo $image1x; ?>" data-srcset="<?php echo $image2x; ?>" style="object-position: <?php echo $posX; ?>% <?php echo $posY; ?>%;" class="lazyload" loading="lazy" ><!-- get image Item -->
                     <?php endif; ?>
                 <?php endwhile; ?>
-            <?php endif; ?>
+            <?php else : ?>
+				<img data-src="<?php echo get_template_directory_uri(); ?>/assets/img/no_image_placeholder.png" style="background-color: white; border: lightgray solid 1px;" class="lazyload" loading="lazy" ><!-- None Image -->
+			<?php endif; ?>
         </a>
 	</div>
 	
