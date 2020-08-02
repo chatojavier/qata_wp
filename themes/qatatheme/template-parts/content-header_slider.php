@@ -9,6 +9,7 @@
 
 ?>
         
+    <?php if ( is_front_page() ) : ?>
         <div class="header-slider">
             <?php $terms = get_terms( 'products_category' ); ?>
             <div class="header-slider__carousel">
@@ -60,7 +61,61 @@
                 </div>
             </div>
         </div>
-       
+    <?php else : 
+        if (have_posts()) :?>
+            <div class="header-slider">
+                <?php $terms = get_terms( 'products_category' ); ?>
+                <div class="header-slider__carousel">
+                    <div class="swiper-wrapper">
+
+                        <?php while ( have_posts() ) : the_post(); 
+                            $post_link = esc_url( get_permalink() );
+                            $post_img1x = esc_url(get_the_post_thumbnail_url(get_the_ID(),'large'));
+                            $post_img2x = esc_url(get_the_post_thumbnail_url(get_the_ID(),'full'));
+                            // If there was an error, continue to the next term.
+                            if ( is_wp_error( $term_link ) ) {
+                                continue;
+                            }
+
+                            // We successfully got a link. Print it out.?>
+                            <div class="swiper-slide header-slider__carousel__item bg-cover">
+                                <a href="<?php echo $post_link ?>">
+                                    <img src="<?php echo $post_img1x ?>" srcset="<?php echo $post_img2x ?> 2x">
+                                </a>
+                            </div>
+
+                        <?php endwhile;?>
+
+                    </div>
+                </div>
+                <div class="header-slider__label">
+                    <div class="swiper-wrapper">
+
+                        <?php while ( have_posts() ) : the_post(); 
+                            $post_link = esc_url( get_permalink() );
+                            $post_name = get_the_title();
+                            $post_date = get_the_date( 'F jS Y' );
+                            // If there was an error, continue to the next term.
+                            if ( is_wp_error( $term_link ) ) {
+                                continue;
+                            }
+
+                            // We successfully got a link. Print it out.?>
+                            <div class="swiper-slide">
+                                <a href="<?php echo $post_link; ?>"><div class="header-slider__label__content">
+                                    <h1 class="header-slider__label__content__cat"><?php echo $post_name; ?></h1>
+                                    <p class="header-slider__label__content__prod"><?php echo $post_date; ?></p>
+                                    <svg class="header-slider__label__content__arrow" xmlns="http://www.w3.org/2000/svg" width="25.207" height="20.414" viewBox="0 0 25.207 20.414"><defs></defs><path class="a" d="M15,0V6H0v6H15v6l9-9.09Z" transform="translate(0.5 1.199)"/></svg>
+                                </div></a>
+                            </div>
+
+                        <?php endwhile;?>
+
+                    </div>
+                </div>
+            </div>
+        <?php endif; 
+    endif; ?>
         <div id="down-sign" class="first-screen__down-arrow">
             <a href="#down-sign"><i class="fas fa-long-arrow-alt-down"></i></a>
         </div>
