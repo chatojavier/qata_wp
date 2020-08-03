@@ -308,6 +308,10 @@
         }
     }
 
+    .blog .block-catalog {
+        margin-bottom: 2rem;
+    }
+
 
     //block-categories
     .block-categories {
@@ -738,7 +742,6 @@
 
             &__content {
                 width: 80%;
-                margin-top: 5rem;
                 display: flex;
                 justify-content: center;
                 padding: 5rem 0;

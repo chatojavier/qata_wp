@@ -49,45 +49,7 @@ if(have_posts()) : the_post();
             </div>
             <div class="block-articles__slider">
                 <div class="product-slider">
-                    <div class="product-slider__carousel">
-                        <div class="swiper-wrapper">
-                            <div class="product-slider__carousel__item swiper-slide"> <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/responsibility_img_004.jpg" srcset="<?php echo get_template_directory_uri(); ?>/assets/img/responsibility_img_004@2x.jpg" alt="" style="object-position: 50% 50%;"></a></div>
-                            <div class="product-slider__carousel__item swiper-slide"> <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/responsibility_img_003.jpg" srcset="<?php echo get_template_directory_uri(); ?>/assets/img/responsibility_img_003@2x.jpg" alt="" style="object-position: 0 0;"></a></div>
-                            <div class="product-slider__carousel__item swiper-slide"> <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/responsibility_img_005.jpg" srcset="<?php echo get_template_directory_uri(); ?>/assets/img/responsibility_img_005@2x.jpg" alt="" style="object-position: 0 0;"></a></div>
-                            <div class="product-slider__carousel__item swiper-slide"> <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/responsibility_img_002.jpg" srcset="<?php echo get_template_directory_uri(); ?>/assets/img/responsibility_img_002@2x.jpg" alt="" style="object-position: 50% 50%;"></a></div>
-                            <div class="product-slider__carousel__item swiper-slide"> <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/responsibility_img_001.jpg" srcset="<?php echo get_template_directory_uri(); ?>/assets/img/responsibility_img_001@2x.jpg" alt="" style="object-position: 0 0;"></a></div>
-                            <div class="product-slider__carousel__item swiper-slide"> <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/responsibility_img_006.jpg" srcset="<?php echo get_template_directory_uri(); ?>/assets/img/responsibility_img_006@2x.jpg" alt="" style="object-position: 50% 50%;"></a></div>
-                        </div>
-                    </div>
-                    <div class="product-slider__label">
-                        <div class="swiper-wrapper">
-                            <div class="product-slider__label__content swiper-slide">
-                                <p class="product-slider__label__content__prod">¿Cómo se hace la esquila de la alapaca?</p>
-                                <h2 class="product-slider__label__content__material">3 de mayo del 2020</h2>
-                                <svg class="product-slider__label__content__arrow" xmlns="http://www.w3.org/2000/svg" width="25.207" height="20.414" viewBox="0 0 25.207 20.414"><defs></defs><path class="a" d="M15,0V6H0v6H15v6l9-9.09Z" transform="translate(0.5 1.199)"/></svg>
-                            </div>
-                            <div class="product-slider__label__content swiper-slide">
-                                <p class="product-slider__label__content__prod">¿Cómo se hace la esquila de la alapaca?</p>
-                                <h2 class="product-slider__label__content__material">3 de mayo del 2020</h2>
-                                <svg class="product-slider__label__content__arrow" xmlns="http://www.w3.org/2000/svg" width="25.207" height="20.414" viewBox="0 0 25.207 20.414"><defs></defs><path class="a" d="M15,0V6H0v6H15v6l9-9.09Z" transform="translate(0.5 1.199)"/></svg>
-                            </div>
-                            <div class="product-slider__label__content swiper-slide">
-                                <p class="product-slider__label__content__prod">¿Cómo se hace la esquila de la alapaca?</p>
-                                <h2 class="product-slider__label__content__material">3 de mayo del 2020</h2>
-                                <svg class="product-slider__label__content__arrow" xmlns="http://www.w3.org/2000/svg" width="25.207" height="20.414" viewBox="0 0 25.207 20.414"><defs></defs><path class="a" d="M15,0V6H0v6H15v6l9-9.09Z" transform="translate(0.5 1.199)"/></svg>
-                            </div>
-                            <div class="product-slider__label__content swiper-slide">
-                                <p class="product-slider__label__content__prod">¿Cómo se hace la esquila de la alapaca?</p>
-                                <h2 class="product-slider__label__content__material">3 de mayo del 2020</h2>
-                                <svg class="product-slider__label__content__arrow" xmlns="http://www.w3.org/2000/svg" width="25.207" height="20.414" viewBox="0 0 25.207 20.414"><defs></defs><path class="a" d="M15,0V6H0v6H15v6l9-9.09Z" transform="translate(0.5 1.199)"/></svg>
-                            </div>
-                            <div class="product-slider__label__content swiper-slide">
-                                <p class="product-slider__label__content__prod">¿Cómo se hace la esquila de la alapaca?</p>
-                                <h2 class="product-slider__label__content__material">3 de mayo del 2020</h2>
-                                <svg class="product-slider__label__content__arrow" xmlns="http://www.w3.org/2000/svg" width="25.207" height="20.414" viewBox="0 0 25.207 20.414"><defs></defs><path class="a" d="M15,0V6H0v6H15v6l9-9.09Z" transform="translate(0.5 1.199)"/></svg>
-                            </div>
-                        </div>
-                    </div>
+                    <?php get_post_slider(6); ?>
                 </div>
             </div>
         </div>

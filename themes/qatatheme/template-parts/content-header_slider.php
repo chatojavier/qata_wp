@@ -29,6 +29,7 @@
                         <div class="swiper-slide header-slider__carousel__item bg-cover">
                             <a href="<?php echo $term_link ?>">
                                 <img src="<?php echo $cat_image1x ?>" srcset="<?php echo $cat_image2x ?>" style="object-position: <?php echo $img_pos['x'] ?>% <?php echo $img_pos['y'] ?>%;">
+                                <div class="slide-image-overlay"></div>
                             </a>
                         </div>
                     <?php endforeach;?>

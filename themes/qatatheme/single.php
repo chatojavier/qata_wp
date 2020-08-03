@@ -8,9 +8,10 @@
  */
 
 get_header();
+get_template_part( 'template-parts/header-hero', get_post_type() );
 ?>
 
-	<main id="primary" class="site-main">
+	<section class="second-screen">
 
 		<?php
 		while ( have_posts() ) :
@@ -18,23 +19,26 @@ get_header();
 
 			get_template_part( 'template-parts/content', get_post_type() );
 
-			the_post_navigation(
-				array(
-					'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Previous:', 'qatatheme' ) . '</span> <span class="nav-title">%title</span>',
-					'next_text' => '<span class="nav-subtitle">' . esc_html__( 'Next:', 'qatatheme' ) . '</span> <span class="nav-title">%title</span>',
-				)
-			);
-
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) :
-				comments_template();
-			endif;
-
 		endwhile; // End of the loop.
 		?>
 
-	</main><!-- #main -->
+		<div class="block-articles">
+            <div class="block-articles__bg"></div>
+            <div class="block-articles__content">
+                <h1 class="block-articles__content__ttl">Recent Articles</h1>
+                <a href="blog.html"><h2 class="block-articles__content__btn">View All</h2></a>
+            </div>
+            <div class="block-articles__slider">
+				<div class="product-slider">
+					<?php get_post_slider(6); ?>
+				</div>
+            </div>
+        </div>
+
+	</section><!-- #main -->
+	<script>
+        document.body.classList.add('single');
+	</script>
 
 <?php
-get_sidebar();
 get_footer();

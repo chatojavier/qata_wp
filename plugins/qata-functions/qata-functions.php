@@ -248,6 +248,7 @@ Description: Site specific code changes for Qata
 									<div style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/no_image_placeholder.png'); background-position: center; background-repeat: no-repeat; background-size: 50%; border: lightgray solid 1px; height:100%"></div>
 								<?php else : //asign image cover to slide ?>
 									<img data-src="<?php echo $image1x; ?>" data-srcset="<?php echo $image2x; ?>" alt="" style="object-position: <?php echo $posX; ?>% <?php echo $posY; ?>%" class="swiper-lazy">
+									<div class="slide-image-overlay"></div>
 								<?php endif; ?>
 							<?php break;
 							endif;
@@ -317,6 +318,80 @@ Description: Site specific code changes for Qata
 		<?php wp_reset_postdata();
 		else : ?>
 		<span>No products found</span>
+		<?php endif;
+	}
+
+/**========================
+	Post Slider Function.
+===========================*/
+	
+	function get_post_slider( $numberSlides ) {
+		//identify id of post
+		$postId = get_the_ID();
+		// defining args of posts to display
+		$args = array(
+			'post_type' => 'post',
+			'orderby'   => 'rand',
+			'posts_per_page' => $numberSlides, 
+		);
+		// Assingn args to WP_Query
+		$the_query = new WP_Query( $args );
+		
+		// Creating an array to store all the items ids 
+		$IDitems = array();
+
+		// Starting the loop
+		if ( $the_query->have_posts() ) : ?>
+		<!-- Image Slider -->
+		<div class="product-slider__carousel">
+			<div class="swiper-wrapper">
+			<?php while ( $the_query->have_posts() ) :
+				$the_query->the_post();
+				if(get_the_ID() === $postId) {
+					continue;
+				}
+				$IDitems[] = get_the_ID();?>
+				<!-- loader gif -->
+				<div class="product-slider__carousel__item swiper-slide" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/dual-ring-1s-61px.gif'); background-position: center; background-repeat: no-repeat; background-size: 5%;">
+				
+					<!-- Link to post -->
+					<a href="<?php echo get_permalink();?>">
+					<?php //defining with post values
+						$image1x = esc_url(get_the_post_thumbnail_url(get_the_ID(),'medium'));
+						$image2x = esc_url(get_the_post_thumbnail_url(get_the_ID(),'large'));
+						//show a non image pic if not featured image set
+						if (empty($image1x)) :?>
+							<div style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/no_image_placeholder.png'); background-position: center; background-repeat: no-repeat; background-size: 50%; border: lightgray solid 1px; height:100%"></div>
+						<?php else : //asign featured image to slide ?>
+							<img data-src="<?php echo $image1x; ?>" data-srcset="<?php echo $image2x; ?>" alt="" class="swiper-lazy">
+							<div class="slide-image-overlay"></div>
+						<?php endif; ?>
+					</a>
+				</div>
+			<?php endwhile; ?>
+			</div>
+		</div>
+		
+		<!-- Label Slider -->
+		<div class="product-slider__label">
+			<div class="swiper-wrapper">
+			<?php foreach($IDitems as $item) : ?>
+				<div class="product-slider__label__content swiper-slide">
+					<p class="product-slider__label__content__prod"><?php echo get_the_title( $item ); ?></p>
+					
+					<!-- Post Composition -->
+					<h2 class="product-slider__label__content__material">
+						<?php echo get_the_date( 'F jS, Y', $item ); ?>
+					</h2>
+
+					<svg class="product-slider__label__content__arrow" xmlns="http://www.w3.org/2000/svg" width="25.207" height="20.414" viewBox="0 0 25.207 20.414"><defs></defs><path class="a" d="M15,0V6H0v6H15v6l9-9.09Z" transform="translate(0.5 1.199)"/></svg>
+				</div>
+			<?php endforeach; ?>
+			</div>
+		</div>
+		<?php wp_reset_postdata();
+		else : ?>
+		<span>No posts found</span>
 		<?php endif;
 	}
 
