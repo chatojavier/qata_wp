@@ -86,7 +86,7 @@
             }
 
             &__item {
-                padding: 1rem 0;
+                padding: .7rem 0;
                 color: $color-salmon-dark;
                 transform: translateX(100vw);
                 @include transition-ease;

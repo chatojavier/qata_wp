@@ -73,6 +73,7 @@
         .item {
             .header {
                 display: block;
+                opacity: 1;
             }
         }
     
@@ -80,6 +81,9 @@
     //header - first screen
     .header {
         display: none;
+        opacity: 0;
+        @include transition-ease;
+        z-index: 100;
     }
     .first-screen {
         height: 100%;
