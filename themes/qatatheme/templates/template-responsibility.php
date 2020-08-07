@@ -22,7 +22,7 @@ if(have_posts()) : the_post();
                 </p>
             </div>
             <figure class="block-artisans__img">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/responsibility_img_002.jpg" srcset="<?php echo get_template_directory_uri(); ?>/assets/img/responsibility_img_002@2x.jpg" alt="Qata Alpaca - Alpacas in their natural environment.">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/varias-taller00003.jpg" srcset="<?php echo get_template_directory_uri(); ?>/assets/img/varias-taller00003@2x.jpg" alt="Qata Alpaca - Alpacas in their natural environment.">
             </figure>
         </div>
 
@@ -37,7 +37,7 @@ if(have_posts()) : the_post();
                 </p>
             </div>
             <figure class="block-guiltfree__img">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/responsibility_img_003.jpg" srcset="<?php echo get_template_directory_uri(); ?>/assets/img/responsibility_img_003@2x.jpg" alt="Qata Alpaca - Alpacas in their natural environment.">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/varias-general00017.jpg" srcset="<?php echo get_template_directory_uri(); ?>/assets/img/varias-general00017@2x.jpg" alt="Qata Alpaca - Alpacas in their natural environment.">
             </figure>
         </div>
 
