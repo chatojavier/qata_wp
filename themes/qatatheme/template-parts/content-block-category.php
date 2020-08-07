@@ -14,6 +14,8 @@
     <div class="block-categories__img">
     <?php
         $post_term = get_the_terms( $post->ID, 'products_category' )[0];
+        $archive_term = get_queried_object();
+        $archive_personalized = get_term(190, 'products_category');
         $image1x = wp_get_attachment_image_src(get_field('cat_image', $post_term), 'large')[0];
         $image2x = wp_get_attachment_image_src(get_field('cat_image', $post_term), 'full')[0];
     ?>
@@ -27,7 +29,7 @@
         </h1>
         <?php $terms = get_terms( 'products_category' ); ?>
         <ul class="block-categories__card__list">
-        <?php foreach ( $terms as $term ) {
+        <?php foreach ( $terms as $term ) :
             // The $term is an object, so we don't need to specify the $taxonomy.
             $term_link = get_term_link( $term );
             $cat_image1x = wp_get_attachment_image_src(get_field('cat_image', $term), 'large')[0];
@@ -42,28 +44,12 @@
             <li>
                 <a href="<?php echo esc_url( $term_link ); ?>" data-src="<?php echo $cat_image1x; ?>" data-srcset="<?php echo $cat_image2x ?>"> <?php echo $term->name ?> </a>
             </li>
-        <?php } ?>
+        <?php endforeach;
+        if ($archive_term != $archive_personalized) :?>
+            <li>
+                <a href="<?php echo esc_url( get_term_link( $archive_personalized ) ); ?>" data-src="<?php echo wp_get_attachment_image_src(get_field('cat_image', $archive_personalized), 'large')[0];; ?>" data-srcset="<?php echo wp_get_attachment_image_src(get_field('cat_image', $archive_personalized), 'full')[0]; ?>"> <?php echo $archive_personalized->name; ?> </a>
+            </li>
+        <?php endif; ?>
         </ul>
-
-        <!-- <ul class="block-categories__card__list">
-            <li>
-                <a href="<?php get_term_link('term-21'); ?>" hover-img="<?php the_field('cat_image1x', 'term_21'); ?>">Accessories</a>
-            </li>
-            <li>
-                <a href="<?php get_term_link('alpaca_fur_toys'); ?>" hover-img="<?php echo get_template_directory_uri(); ?>/assets/img/products_img_003.jpg">Alpaca Fur Toys</a>
-            </li>
-            <li>
-                <a href="<?php get_term_link('babies'); ?>" hover-img="<?php echo get_template_directory_uri(); ?>/assets/img/products_img_004.jpg">Babies</a>
-            </li>
-            <li>
-                <a href="<?php get_term_link('home'); ?>" hover-img="<?php echo get_template_directory_uri(); ?>/assets/img/products_img_002.jpg">Home</a>
-            </li>
-            <li>
-                <a href="<?php get_term_link('needle_felting'); ?>" hover-img="<?php echo get_template_directory_uri(); ?>/assets/img/products_img_003.jpg">Needle Felting</a>
-            </li>
-            <li>
-                <a href="<?php get_term_link('slippers'); ?>" hover-img="<?php echo get_template_directory_uri(); ?>/assets/img/products_img_004.jpg">Slippers</a>
-            </li>
-        </ul> -->
     </div>
 </div>

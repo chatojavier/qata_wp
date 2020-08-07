@@ -24,15 +24,19 @@
                         if ( is_wp_error( $term_link ) ) {
                             continue;
                         }
-                    
-                        // We successfully got a link. Print it out.?>
-                        <div class="swiper-slide header-slider__carousel__item bg-cover">
-                            <a href="<?php echo $term_link ?>">
-                                <img src="<?php echo $cat_image1x ?>" srcset="<?php echo $cat_image2x ?>" style="object-position: <?php echo $img_pos['x'] ?>% <?php echo $img_pos['y'] ?>%;">
-                                <div class="slide-image-overlay"></div>
-                            </a>
-                        </div>
-                    <?php endforeach;?>
+                        //show a non image pic if not featured image set
+						if (empty($cat_image1x)) :?>
+							<div style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/no_image_placeholder.png'); background-position: center; background-repeat: no-repeat; background-size: 50%; border: lightgray solid 1px; height:100%"></div>
+                        
+                        <?php else : //asign featured image to slide ?>
+                            <div class="swiper-slide header-slider__carousel__item bg-cover" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/dual-ring-1s-61px.gif'); background-position: center; background-repeat: no-repeat; background-size: 5%;">
+                                <a href="<?php echo $term_link ?>">
+                                    <img data-src="<?php echo $cat_image1x ?>" data-srcset="<?php echo $cat_image2x ?>" style="object-position: <?php echo $img_pos['x'] ?>% <?php echo $img_pos['y'] ?>%;" class="swiper-lazy">
+                                    <div class="slide-image-overlay"></div>
+                                </a>
+                            </div>
+                        <?php endif;
+                    endforeach;?>
                 </div>
             </div>
             <div class="header-slider__label">
@@ -52,18 +56,21 @@
                     
                         // We successfully got a link. Print it out.?>
                         <div class="swiper-slide">
-                            <a href="<?php echo $term_link ?>"><div class="header-slider__label__content">
-                                <p class="header-slider__label__content__prod"><?php echo $item_name ?></p>
-                                <h1 class="header-slider__label__content__cat"><?php echo $term_name ?></h1>
-                                <svg class="header-slider__label__content__arrow" xmlns="http://www.w3.org/2000/svg" width="25.207" height="20.414" viewBox="0 0 25.207 20.414"><defs></defs><path class="a" d="M15,0V6H0v6H15v6l9-9.09Z" transform="translate(0.5 1.199)"/></svg>
-                            </div></a>
+                            <a href="<?php echo $term_link ?>">
+                                <div class="header-slider__label__content">
+                                    <p class="header-slider__label__content__prod"><?php echo $item_name ?></p>
+                                    <h1 class="header-slider__label__content__cat"><?php echo $term_name ?></h1>
+                                    <svg class="header-slider__label__content__arrow" xmlns="http://www.w3.org/2000/svg" width="25.207" height="20.414" viewBox="0 0 25.207 20.414"><defs></defs><path class="a" d="M15,0V6H0v6H15v6l9-9.09Z" transform="translate(0.5 1.199)"/></svg>
+                                </div>
+                            </a>
                         </div>
                     <?php endforeach; ?>
                 </div>
             </div>
         </div>
-    <?php else : 
-        if (have_posts()) :?>
+    <?php else :
+        if (have_posts()) :
+            query_posts ('posts_per_page=6');?>
             <div class="header-slider">
                 <?php $terms = get_terms( 'products_category' ); ?>
                 <div class="header-slider__carousel">
@@ -74,18 +81,23 @@
                             $post_img1x = esc_url(get_the_post_thumbnail_url(get_the_ID(),'large'));
                             $post_img2x = esc_url(get_the_post_thumbnail_url(get_the_ID(),'full'));
                             // If there was an error, continue to the next term.
-                            if ( is_wp_error( $term_link ) ) {
+                            if ( is_wp_error( $post_link ) ) {
                                 continue;
                             }
+                            //show a non image pic if not featured image set
+						    if (empty($post_img1x)) :?>
+							    <div style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/no_image_placeholder.png'); background-position: center; background-repeat: no-repeat; background-size: 50%; border: lightgray solid 1px; height:100%"></div>
+                        
+                            <?php else : //asign featured image to slide ?>
+                                <div class="swiper-slide header-slider__carousel__item bg-cover" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/dual-ring-1s-61px.gif'); background-position: center; background-repeat: no-repeat; background-size: 5%;">
+                                    <a href="<?php echo $post_link ?>">
+                                        <img data-src="<?php echo $post_img1x ?>" data-srcset="<?php echo $post_img2x ?> 2x" class="swiper-lazy">
+                                        <div class="slide-image-overlay"></div>
+                                    </a>
+                                </div>
 
-                            // We successfully got a link. Print it out.?>
-                            <div class="swiper-slide header-slider__carousel__item bg-cover">
-                                <a href="<?php echo $post_link ?>">
-                                    <img src="<?php echo $post_img1x ?>" srcset="<?php echo $post_img2x ?> 2x">
-                                </a>
-                            </div>
-
-                        <?php endwhile;?>
+                            <?php endif;
+                        endwhile;?>
 
                     </div>
                 </div>
@@ -103,11 +115,13 @@
 
                             // We successfully got a link. Print it out.?>
                             <div class="swiper-slide">
-                                <a href="<?php echo $post_link; ?>"><div class="header-slider__label__content">
-                                    <h1 class="header-slider__label__content__cat"><?php echo $post_name; ?></h1>
-                                    <p class="header-slider__label__content__prod"><?php echo $post_date; ?></p>
-                                    <svg class="header-slider__label__content__arrow" xmlns="http://www.w3.org/2000/svg" width="25.207" height="20.414" viewBox="0 0 25.207 20.414"><defs></defs><path class="a" d="M15,0V6H0v6H15v6l9-9.09Z" transform="translate(0.5 1.199)"/></svg>
-                                </div></a>
+                                <a href="<?php echo $post_link; ?>">
+                                    <div class="header-slider__label__content">
+                                        <h1 class="header-slider__label__content__cat"><?php echo $post_name; ?></h1>
+                                        <p class="header-slider__label__content__prod"><?php echo $post_date; ?></p>
+                                        <svg class="header-slider__label__content__arrow" xmlns="http://www.w3.org/2000/svg" width="25.207" height="20.414" viewBox="0 0 25.207 20.414"><defs></defs><path class="a" d="M15,0V6H0v6H15v6l9-9.09Z" transform="translate(0.5 1.199)"/></svg>
+                                    </div>
+                                </a>
                             </div>
 
                         <?php endwhile;?>

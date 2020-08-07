@@ -55,7 +55,9 @@ if (have_posts()) :
 	  var images = document.querySelectorAll("img.lazyload");
 	    images.forEach(img => {
 	        img.src = img.dataset.src;
-			img.srcset = img.dataset.srcset;
+			if (img.dataset.srcset) {
+				img.srcset = img.dataset.srcset;
+			};
 	    });
 	  } else {
 	    // Importamos dinámicamente la libreria `lazysizes`

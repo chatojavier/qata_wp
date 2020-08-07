@@ -2,7 +2,11 @@
 
 /* portrait */
 @media screen and (orientation:portrait) {
-
+    @media screen and (min-width: 471px) {
+        .term-190 .block-artisans {
+            margin-top: 3.25rem;
+        }
+    }
 }
 /* landscape */
 @media screen and (orientation:landscape) {
@@ -215,12 +219,12 @@
             margin-top: 6rem;
         }
     }
-        //about - block-product
+        //about - block-products
         .about .block-products {
             margin-top: -3rem;
         }
 
-        //item - .block-product
+        //item - .block-products
         .item {
             .block-products {
                 margin-top: -3rem;
@@ -230,6 +234,10 @@
             }
         }
 
+        //personalized - .block-products
+        .term-190 .block-products {
+            margin-top: -1.5rem;
+        }
     
     //block-guiltfree
 
@@ -430,13 +438,15 @@
             .header-card__descrip {
                 font-size: 13px;
                 order: 1;
-                margin-right: 2rem;
-                margin-left: 2rem;
             }
             .header-card__list {
-                margin: 3rem 2rem 0 2rem;
+                margin: 2.5rem 2rem 0 2rem;
             }
         }
+            //Category Header Card
+            .category .landscape.header-card {
+                justify-content: center;
+            }
 
         .portrait.header-card {
             display: none;
@@ -545,9 +555,7 @@
 
             &__content {
                 order: 2;
-                margin-top: -2rem;
-                margin-left: 10%;
-                margin-right: 10%;
+                margin: 10%;
 
                 h2 {
                     display: inline-block;
@@ -795,7 +803,12 @@
             height: 27vw;
             max-height: 30rem;
             min-height: auto;
+            .header-card__ttl {
+                margin: 2rem;
+            }
         }
+
+        .single .landscape.header-card .header-card__ttl {margin: 0;}
         
         //block-properties
 

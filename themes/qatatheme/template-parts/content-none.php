@@ -10,9 +10,7 @@
 ?>
 
 <section class="no-results not-found">
-	<header class="page-header">
-		<h1 class="page-title"><?php esc_html_e( 'Nothing Found', 'qatatheme' ); ?></h1>
-	</header><!-- .page-header -->
+
 
 	<div class="page-content">
 		<?php
@@ -40,7 +38,6 @@
 
 		else :
 			?>
-
 			<p><?php esc_html_e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'qatatheme' ); ?></p>
 			<?php
 			get_search_form();
@@ -48,4 +45,4 @@
 		endif;
 		?>
 	</div><!-- .page-content -->
-</section><!-- .no-results -->
+</section><!-- .no-results --> 

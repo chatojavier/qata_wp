@@ -14,6 +14,7 @@
             <?php
             $head_image1x = wp_get_attachment_image_src(get_field('header_image'), 'large')[0];
             $head_image2x = wp_get_attachment_image_src(get_field('header_image'), 'full')[0];
+            $archive_personalized = get_term(190, 'products_category');
             ?>
                 <img src="<?php echo $head_image1x ?>" alt="" srcset="<?php echo $head_image2x ?> 2x" style="object-position: <?php the_field('image_position_x') ?>% <?php the_field('image_position_y') ?>%;">
                 <img src="" srcset="" class="header-hero__img__change opacity-0">
@@ -41,6 +42,9 @@
                         <a href="<?php echo esc_url( $term_link ); ?>" data-src="<?php echo $cat_image1x; ?>" data-srcset="<?php echo $cat_image2x ?>"> <?php echo $term->name ?> </a>
                     </li>
                 <?php } ?>
+                    <li>
+                        <a href="<?php echo esc_url( get_term_link( $archive_personalized ) ); ?>" data-src="<?php echo wp_get_attachment_image_src(get_field('cat_image', $archive_personalized), 'large')[0];; ?>" data-srcset="<?php echo wp_get_attachment_image_src(get_field('cat_image', $archive_personalized), 'full')[0]; ?>"> <?php echo $archive_personalized->name; ?> </a>
+                    </li>
                 </ul>
 
                 
@@ -72,5 +76,8 @@
                 <a href="<?php echo esc_url( $term_link ); ?>"> <?php echo $term->name ?> </a>
             </li>
         <?php } ?>
+            <li>
+                <a href="<?php echo esc_url( get_term_link( $archive_personalized ) ); ?>" data-src="<?php echo wp_get_attachment_image_src(get_field('cat_image', $archive_personalized), 'large')[0];; ?>" data-srcset="<?php echo wp_get_attachment_image_src(get_field('cat_image', $archive_personalized), 'full')[0]; ?>"> <?php echo $archive_personalized->name; ?> </a>
+            </li>
         </ul>
     </div>

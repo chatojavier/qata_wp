@@ -163,7 +163,7 @@
     }
 
     &__content {
-        margin: 150px 30px 50px 30px;
+        margin: 100px 30px 50px 30px;
         position: relative;
 
         &__ttl {
@@ -182,19 +182,19 @@
 }
 
 //Block Porduct About page
-.about {
-    .block-products {
-        margin-top: -6rem;
-    }
-}
+// .about {
+//     .block-products {
+//         margin-top: -6rem;
+//     }
+// }
 
 //Block Product Item Page
 
-.item {
-    .block-products {
-        margin-top: -6rem;
-    }
-}
+// .item {
+//     .block-products {
+//         margin-top: -6rem;
+//     }
+// }
 
 //Block Product Blog Page
 
@@ -354,6 +354,7 @@
     height: 100%;
     width: 100%;
     margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -386,6 +387,9 @@
             @include raleway15;
             color: white;
             text-align: justify;
+            & > p:not(:last-child) {
+                margin-bottom: 1rem;
+            }
 
         }
     }
@@ -411,12 +415,32 @@
     }
 }
 
- // Quality Block
-.products .block-artisans {
-    &__bg {
-        background-color: $color-gold-dark;
+    // Quality change
+    .products .block-artisans {
+        &__bg {
+            background-color: $color-gold-dark;
+        }
     }
-}
+
+    // Personalized change
+    .term-190 .block-artisans {
+        &__bg {
+            background-color: $color-gold-dark;
+        }
+        
+        &__content {
+            display: flex;
+            flex-direction: column-reverse;
+            &__ttl {
+                margin-bottom: 0;
+                margin-top: 3rem;
+                color: $color-gold-light;
+            }
+            &__txt {
+                color: #fff;
+            }
+        }
+    }
 
 
 /* --- Guilt Free --- */

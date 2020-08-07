@@ -20,12 +20,12 @@ gulp.task('sass', function(){
 });
 
 //minify js
-const minifyJs = require('gulp-minify');
+var minifyJs = require('gulp-minify');
  
 gulp.task('minifyjs', function() {
   gulp.src(['assets/js/**/*.js'])
     .pipe(minifyJs())
-    .pipe(gulp.dest('./assets/js/'))
+    .pipe(gulp.dest('./assets/jsmin/'))
 });
 
 //Watch task

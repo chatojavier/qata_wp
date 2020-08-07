@@ -31,7 +31,7 @@
     position: relative;
     margin-top: -6.5rem;
     margin-left: 10%;
-    padding: 0 2rem 2rem 2rem;
+    padding-bottom: 2rem;
     overflow: hidden;
     z-index: 1;
 
@@ -46,6 +46,7 @@
         @include raleway15;
         color: white;
         text-align: justify;
+        padding: 0 2rem;
         
         p {
             margin-top: 2rem;
@@ -105,7 +106,7 @@
             margin: 2rem 3rem;
             @include avenir13-light;
             text-align: justify;
-            line-height: 2rem;
+            line-height: 1.75rem;
 
             li {
                 a {

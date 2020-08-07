@@ -363,7 +363,7 @@ Description: Site specific code changes for Qata
 						if (empty($image1x)) :?>
 							<div style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/no_image_placeholder.png'); background-position: center; background-repeat: no-repeat; background-size: 50%; border: lightgray solid 1px; height:100%"></div>
 						<?php else : //asign featured image to slide ?>
-							<img data-src="<?php echo $image1x; ?>" data-srcset="<?php echo $image2x; ?>" alt="" class="swiper-lazy">
+							<img data-src="<?php echo $image1x; ?>" data-srcset="<?php echo $image2x; ?> 2x" alt="" class="swiper-lazy">
 							<div class="slide-image-overlay"></div>
 						<?php endif; ?>
 					</a>
@@ -439,7 +439,21 @@ Description: Site specific code changes for Qata
 	
 	add_action( 'pre_get_posts', 'my_change_sort_order'); 
 
+
+/**========================
+	ACF include and register this location type.
+===========================*/
+	
+	function my_acf_init_location_types() {
+
+		// Check function exists, then include and register the custom location type class.
+		if( function_exists('acf_register_location_type') ) {
+			include_once( get_template_directory() . 'inc/class-my-acf-location-taxonomy-term.php' );
+			acf_register_location_type( 'My_ACF_Location_Taxonomy_Term' );
+		}
+	}
+
+	add_action('acf/init', 'my_acf_init_location_types');
+
 /* Stop Adding Functions Below this Line */
-
-
 ?>

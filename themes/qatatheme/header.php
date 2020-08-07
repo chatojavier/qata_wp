@@ -75,38 +75,6 @@
 					)
 				);
 			?>
-
-            <!-- <ul class="menu-nav">
-                <li class="menu-nav__item">
-                    <a href="about.html" class="menu-nav__link active">
-                        About Us
-                    </a>
-                </li>
-                <li class="menu-nav__item">
-                    <a href="products.html" class="menu-nav__link">
-                        Products
-                    </a>
-                </li>
-                <li class="menu-nav__item">
-                    <a href="responsibility.html" class="menu-nav__link">
-                        Responsibility
-                    </a>
-                </li>
-                <li class="menu-nav__item">
-                    <a href="blog.html" class="menu-nav__link">
-                        Blog
-                    </a>
-                </li>
-                <li class="menu-nav__item">
-                  <a href="#contact" class="menu-nav__link contact">
-                      Contact
-                  </a>
-                </li>
-                <li class="social-icons menu-nav__item">
-                    <a class="hover:text-salmon-light" href="https://www.facebook.com/qatalpaca" target="_blank"><i class="fab fa-facebook-f mr-2"></i></a>
-                    <a class="hover:text-salmon-light" href="https://www.instagram.com/qatalpaca/" target="_blank"><i class="fab fa-instagram"></i></a>
-                </li>
-            </ul> -->
             
         </nav>
     </header>
@@ -128,38 +96,6 @@
                             )
                         );
                     ?>
-
-                    <!-- <ul class="menu-nav">
-                        <li class="menu-nav__item">
-                            <a href="about.html" class="menu-nav__link active">
-                                About Us
-                            </a>
-                        </li>
-                        <li class="menu-nav__item">
-                            <a href="products.html" class="menu-nav__link">
-                                Products
-                            </a>
-                        </li>
-                        <li class="menu-nav__item">
-                            <a href="responsibility.html" class="menu-nav__link">
-                                Responsibility
-                            </a>
-                        </li>
-                        <li class="menu-nav__item">
-                            <a href="blog.html" class="menu-nav__link">
-                                Blog
-                            </a>
-                        </li>
-                        <li class="menu-nav__item">
-                        <a href="#contact" class="menu-nav__link contact">
-                            Contact
-                        </a>
-                        </li>
-                        <li class="social-icons menu-nav__item">
-                            <a class="hover:text-salmon-light" href="https://www.facebook.com/qatalpaca" target="_blank"><i class="fab fa-facebook-f mr-2"></i></a>
-                            <a class="hover:text-salmon-light" href="https://www.instagram.com/qatalpaca/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        </li>
-                    </ul> -->
                     
                 </nav>
         </div>
