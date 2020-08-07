@@ -58,7 +58,7 @@ function scrollFunction() {
         document.querySelector(".fixed-bar").removeAttribute("style");
         document.querySelector(".menu-btn").removeAttribute("style");
     }
-    if (document.querySelectorAll(".item").length < 1) {
+    if (document.querySelectorAll(".item").length < 1 && window.innerHeight < window.innerWidth) {
         if (document.body.scrollTop > (window.innerHeight - 200) || document.documentElement.scrollTop > (window.innerHeight - 200)) {
             document.querySelector("header.header").style.display = "block";
         } else {
