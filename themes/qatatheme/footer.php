@@ -32,12 +32,7 @@
 		</div>
 	</div>
 	<div class="insta-container">
-		<script id="insta-widget" src="https://apps.elfsight.com/p/platform.js" defer></script>
-        <div class="elfsight-app-4a319c36-b32c-4165-b3cc-b67ef65bde61"></div>
-		<div class="social-icons">
-			<a href="https://www.facebook.com/qatalpaca" target="_blank"><i class="fab fa-facebook-f"></i></a>
-			<a href="https://www.instagram.com/qatalpaca/" target="_blank"><i class="fab fa-instagram"></i></a>
-		</div>
+		
 	</div>
 </div>
 
