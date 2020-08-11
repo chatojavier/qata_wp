@@ -1,0 +1,42 @@
+.insta-container__over {
+    position: absolute;
+    z-index: 2;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    left: -1px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s, visibility 0.3s;
+    text-align: center;
+    box-sizing: border-box;
+    color: #E56A54;
+    background: rgba(255,255,255,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.counter {
+    font-size: 15px;
+}
+a:hover .insta-container__over {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: visibleStroke;
+}
+.insta-container__item {
+    position: relative;
+}
+
+@media screen and (max-width: 768px) {
+    .insta-container > a:nth-last-of-type(1) {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 415px) {
+    .insta-container > a:nth-last-of-type(-n+2) {
+        display: none;
+    }
+}
